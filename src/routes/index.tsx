@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Camera, ClipboardCheck, Tags } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import previewImg from "@/assets/vinted-seller-app-preview.png.asset.json";
+import ogImg from "@/assets/vinted-seller-app-og.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,6 +19,11 @@ export const Route = createFileRoute("/")({
         content:
           "Radni prostor za resale prodavače: priprema oglasa, cjenovne smjernice i vođenje zaliha.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://vinted-seller.lovable.app/" },
+      { property: "og:image", content: `https://vinted-seller.lovable.app${ogImg.url}` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: `https://vinted-seller.lovable.app${ogImg.url}` },
     ],
   }),
   component: Landing,
@@ -68,6 +75,13 @@ function Landing() {
               </Link>
             </Button>
           </div>
+          <img
+            src={previewImg.url}
+            alt="Vinted Seller APP — pregled aplikacije"
+            className="mt-14 w-full rounded-xl border border-border shadow-sm"
+            width={1536}
+            height={1024}
+          />
         </section>
 
         <section className="grid gap-6 py-16 md:grid-cols-3">
