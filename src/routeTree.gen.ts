@@ -15,7 +15,10 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAddItemRouteImport } from './routes/_authenticated/add-item'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedInventoryRouteImport } from './routes/_authenticated/inventory'
+import { Route as AuthenticatedResearchRouteImport } from './routes/_authenticated/research'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedListingItemIdRouteImport } from './routes/_authenticated/listing.$itemId'
+import { Route as AuthenticatedWorkspaceItemIdRouteImport } from './routes/_authenticated/workspace.$itemId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,11 +49,28 @@ const AuthenticatedInventoryRoute = AuthenticatedInventoryRouteImport.update({
   path: '/inventory',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedResearchRoute = AuthenticatedResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedListingItemIdRoute =
+  AuthenticatedListingItemIdRouteImport.update({
+    id: '/listing/$itemId',
+    path: '/listing/$itemId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceItemIdRoute =
+  AuthenticatedWorkspaceItemIdRouteImport.update({
+    id: '/workspace/$itemId',
+    path: '/workspace/$itemId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -58,7 +78,10 @@ export interface FileRoutesByFullPath {
   '/add-item': typeof AuthenticatedAddItemRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inventory': typeof AuthenticatedInventoryRoute
+  '/research': typeof AuthenticatedResearchRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/listing/$itemId': typeof AuthenticatedListingItemIdRoute
+  '/workspace/$itemId': typeof AuthenticatedWorkspaceItemIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -66,7 +89,10 @@ export interface FileRoutesByTo {
   '/add-item': typeof AuthenticatedAddItemRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/inventory': typeof AuthenticatedInventoryRoute
+  '/research': typeof AuthenticatedResearchRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/listing/$itemId': typeof AuthenticatedListingItemIdRoute
+  '/workspace/$itemId': typeof AuthenticatedWorkspaceItemIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -76,14 +102,34 @@ export interface FileRoutesById {
   '/_authenticated/add-item': typeof AuthenticatedAddItemRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/inventory': typeof AuthenticatedInventoryRoute
+  '/_authenticated/research': typeof AuthenticatedResearchRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/listing/$itemId': typeof AuthenticatedListingItemIdRoute
+  '/_authenticated/workspace/$itemId': typeof AuthenticatedWorkspaceItemIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/add-item' | '/dashboard' | '/inventory' | '/settings'
+    | '/'
+    | '/auth'
+    | '/add-item'
+    | '/dashboard'
+    | '/inventory'
+    | '/research'
+    | '/settings'
+    | '/listing/$itemId'
+    | '/workspace/$itemId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/add-item' | '/dashboard' | '/inventory' | '/settings'
+  to:
+    | '/'
+    | '/auth'
+    | '/add-item'
+    | '/dashboard'
+    | '/inventory'
+    | '/research'
+    | '/settings'
+    | '/listing/$itemId'
+    | '/workspace/$itemId'
   id:
     | '__root__'
     | '/'
@@ -92,7 +138,10 @@ export interface FileRouteTypes {
     | '/_authenticated/add-item'
     | '/_authenticated/dashboard'
     | '/_authenticated/inventory'
+    | '/_authenticated/research'
     | '/_authenticated/settings'
+    | '/_authenticated/listing/$itemId'
+    | '/_authenticated/workspace/$itemId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,11 +194,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInventoryRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/research': {
+      id: '/_authenticated/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof AuthenticatedResearchRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/listing/$itemId': {
+      id: '/_authenticated/listing/$itemId'
+      path: '/listing/$itemId'
+      fullPath: '/listing/$itemId'
+      preLoaderRoute: typeof AuthenticatedListingItemIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/workspace/$itemId': {
+      id: '/_authenticated/workspace/$itemId'
+      path: '/workspace/$itemId'
+      fullPath: '/workspace/$itemId'
+      preLoaderRoute: typeof AuthenticatedWorkspaceItemIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
   }
@@ -159,14 +229,20 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAddItemRoute: typeof AuthenticatedAddItemRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedInventoryRoute: typeof AuthenticatedInventoryRoute
+  AuthenticatedResearchRoute: typeof AuthenticatedResearchRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedListingItemIdRoute: typeof AuthenticatedListingItemIdRoute
+  AuthenticatedWorkspaceItemIdRoute: typeof AuthenticatedWorkspaceItemIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAddItemRoute: AuthenticatedAddItemRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedInventoryRoute: AuthenticatedInventoryRoute,
+  AuthenticatedResearchRoute: AuthenticatedResearchRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedListingItemIdRoute: AuthenticatedListingItemIdRoute,
+  AuthenticatedWorkspaceItemIdRoute: AuthenticatedWorkspaceItemIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
