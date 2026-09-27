@@ -22,7 +22,7 @@ const NAV = [
   { to: "/settings", label: "Postavke", icon: SettingsIcon },
 ] as const;
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <nav className="flex flex-col gap-1" aria-label="Glavna navigacija">
       {NAV.map(({ to, label, icon: Icon }) => (
