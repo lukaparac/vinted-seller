@@ -14,7 +14,343 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      activity_log: {
+        Row: {
+          action: string
+          created_at: string
+          detail: string | null
+          id: string
+          item_id: string | null
+          user_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          detail?: string | null
+          id?: string
+          item_id?: string | null
+          user_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          detail?: string | null
+          id?: string
+          item_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_log_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      item_images: {
+        Row: {
+          created_at: string
+          id: string
+          item_id: string
+          position: number
+          storage_path: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          item_id: string
+          position?: number
+          storage_path: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          item_id?: string
+          position?: number
+          storage_path?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "item_images_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      items: {
+        Row: {
+          ai_confidence: Json
+          analyzed_at: string | null
+          brand: string | null
+          category: string | null
+          color: string | null
+          condition: string | null
+          cost: number | null
+          created_at: string
+          flaws: string | null
+          id: string
+          material: string | null
+          min_price: number | null
+          model: string | null
+          notes: string | null
+          price: number | null
+          quick_sale_price: number | null
+          size: string | null
+          sku: string | null
+          status: string
+          subcategory: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ai_confidence?: Json
+          analyzed_at?: string | null
+          brand?: string | null
+          category?: string | null
+          color?: string | null
+          condition?: string | null
+          cost?: number | null
+          created_at?: string
+          flaws?: string | null
+          id?: string
+          material?: string | null
+          min_price?: number | null
+          model?: string | null
+          notes?: string | null
+          price?: number | null
+          quick_sale_price?: number | null
+          size?: string | null
+          sku?: string | null
+          status?: string
+          subcategory?: string | null
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ai_confidence?: Json
+          analyzed_at?: string | null
+          brand?: string | null
+          category?: string | null
+          color?: string | null
+          condition?: string | null
+          cost?: number | null
+          created_at?: string
+          flaws?: string | null
+          id?: string
+          material?: string | null
+          min_price?: number | null
+          model?: string | null
+          notes?: string | null
+          price?: number | null
+          quick_sale_price?: number | null
+          size?: string | null
+          sku?: string | null
+          status?: string
+          subcategory?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      listing_versions: {
+        Row: {
+          change_note: string | null
+          created_at: string
+          id: string
+          listing_id: string
+          snapshot: Json
+          user_id: string
+          version: number
+        }
+        Insert: {
+          change_note?: string | null
+          created_at?: string
+          id?: string
+          listing_id: string
+          snapshot?: Json
+          user_id: string
+          version?: number
+        }
+        Update: {
+          change_note?: string | null
+          created_at?: string
+          id?: string
+          listing_id?: string
+          snapshot?: Json
+          user_id?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listing_versions_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      listings: {
+        Row: {
+          approved_at: string | null
+          created_at: string
+          description: string
+          id: string
+          item_id: string
+          keywords: string[]
+          language: string
+          min_price: number | null
+          pricing_rationale: string | null
+          quick_sale_price: number | null
+          recommended_price: number | null
+          title: string
+          tone: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          approved_at?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          item_id: string
+          keywords?: string[]
+          language?: string
+          min_price?: number | null
+          pricing_rationale?: string | null
+          quick_sale_price?: number | null
+          recommended_price?: number | null
+          title?: string
+          tone?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          approved_at?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          item_id?: string
+          keywords?: string[]
+          language?: string
+          min_price?: number | null
+          pricing_rationale?: string | null
+          quick_sale_price?: number | null
+          recommended_price?: number | null
+          title?: string
+          tone?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listings_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: true
+            referencedRelation: "items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pricing_research: {
+        Row: {
+          checked_at: string
+          comparable_title: string
+          created_at: string
+          currency: string
+          id: string
+          item_id: string | null
+          notes: string | null
+          observed_price: number | null
+          source_url: string | null
+          user_id: string
+        }
+        Insert: {
+          checked_at?: string
+          comparable_title: string
+          created_at?: string
+          currency?: string
+          id?: string
+          item_id?: string | null
+          notes?: string | null
+          observed_price?: number | null
+          source_url?: string | null
+          user_id: string
+        }
+        Update: {
+          checked_at?: string
+          comparable_title?: string
+          created_at?: string
+          currency?: string
+          id?: string
+          item_id?: string | null
+          notes?: string | null
+          observed_price?: number | null
+          source_url?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_research_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          currency: string
+          display_name: string | null
+          id: string
+          language: string
+          min_price_floor: number
+          quick_sale_discount: number
+          shop_name: string | null
+          target_margin: number
+          tone: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          currency?: string
+          display_name?: string | null
+          id: string
+          language?: string
+          min_price_floor?: number
+          quick_sale_discount?: number
+          shop_name?: string | null
+          target_margin?: number
+          tone?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          display_name?: string | null
+          id?: string
+          language?: string
+          min_price_floor?: number
+          quick_sale_discount?: number
+          shop_name?: string | null
+          target_margin?: number
+          tone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
