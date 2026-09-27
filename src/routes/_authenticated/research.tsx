@@ -28,9 +28,9 @@ import { formatDate, formatEur } from "@/lib/domain";
 export const Route = createFileRoute("/_authenticated/research")({
   head: () => ({
     meta: [
-      { title: "Istraživanje cijena — Vinted Seller OS" },
+      { title: "Istraživanje cijena — Vinted Seller APP" },
       { name: "description", content: "Bilježite usporedive oglase i pratite tržišne cijene." },
-      { property: "og:title", content: "Istraživanje cijena — Vinted Seller OS" },
+      { property: "og:title", content: "Istraživanje cijena — Vinted Seller APP" },
       {
         property: "og:description",
         content: "Bilježite usporedive oglase i pratite tržišne cijene.",

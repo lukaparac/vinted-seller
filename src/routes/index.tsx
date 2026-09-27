@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vinted Seller OS — priprema oglasa uz AI" },
+      { title: "Vinted Seller APP — priprema oglasa uz AI" },
       {
         name: "description",
         content:
           "Pretvorite fotografije u spremne Vinted oglase: AI priprema naslov, opis i cijenu, vi odobravate i objavljujete ručno.",
       },
-      { property: "og:title", content: "Vinted Seller OS — priprema oglasa uz AI" },
+      { property: "og:title", content: "Vinted Seller APP — priprema oglasa uz AI" },
       {
         property: "og:description",
         content:
@@ -44,7 +44,7 @@ function Landing() {
   return (
     <div className="min-h-screen bg-background">
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <span className="text-display text-xl">Vinted Seller OS</span>
+        <span className="text-display text-xl">Vinted Seller APP</span>
         <Button asChild variant="ghost" size="sm">
           <Link to="/auth">Prijava</Link>
         </Button>
@@ -57,7 +57,7 @@ function Landing() {
             Fotografije unutra, <em className="not-italic text-accent">spreman oglas</em> van.
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Vinted Seller OS priprema naslov, opis i prijedlog cijene za svaki artikl, vodi vaše
+            Vinted Seller APP priprema naslov, opis i prijedlog cijene za svaki artikl, vodi vaše
             zalihe i čuva povijest izmjena. Objavu na Vintedu radite sami — aplikacija ne pristupa
             Vintedu niti objavljuje umjesto vas.
           </p>
@@ -83,7 +83,7 @@ function Landing() {
       </main>
 
       <footer className="mx-auto max-w-6xl border-t border-border px-6 py-10 text-xs text-muted-foreground">
-        Vinted Seller OS nije povezan s Vintedom. Cjenovne smjernice su tržišna orijentacija, ne
+        Vinted Seller APP nije povezan s Vintedom. Cjenovne smjernice su tržišna orijentacija, ne
         jamstvo prodajne cijene.
       </footer>
     </div>

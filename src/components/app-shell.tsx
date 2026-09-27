@@ -57,7 +57,7 @@ function SidebarInner({ email, onNavigate }: { email?: string | undefined; onNav
         <Link to="/dashboard" onClick={onNavigate} className="block">
           <span className="text-overline text-sidebar-foreground/60">Vinted</span>
           <span className="block text-display text-2xl text-sidebar-primary-foreground">
-            Seller OS
+            Seller APP
           </span>
         </Link>
         <div className="mt-8">

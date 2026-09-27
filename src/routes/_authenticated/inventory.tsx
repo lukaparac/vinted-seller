@@ -33,9 +33,9 @@ import { STATUS_LABEL, STATUS_ORDER, formatDate, formatEur } from "@/lib/domain"
 export const Route = createFileRoute("/_authenticated/inventory")({
   head: () => ({
     meta: [
-      { title: "Inventar — Vinted Seller OS" },
+      { title: "Inventar — Vinted Seller APP" },
       { name: "description", content: "Svi artikli, statusi, cijene i troškovi na jednom mjestu." },
-      { property: "og:title", content: "Inventar — Vinted Seller OS" },
+      { property: "og:title", content: "Inventar — Vinted Seller APP" },
       {
         property: "og:description",
         content: "Svi artikli, statusi, cijene i troškovi na jednom mjestu.",
