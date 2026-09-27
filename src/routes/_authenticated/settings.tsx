@@ -22,9 +22,9 @@ import { TONES } from "@/lib/domain";
 export const Route = createFileRoute("/_authenticated/settings")({
   head: () => ({
     meta: [
-      { title: "Postavke — Vinted Seller OS" },
+      { title: "Postavke — Vinted Seller APP" },
       { name: "description", content: "Profil prodavača, valuta, jezik i postavke cijena." },
-      { property: "og:title", content: "Postavke — Vinted Seller OS" },
+      { property: "og:title", content: "Postavke — Vinted Seller APP" },
       {
         property: "og:description",
         content: "Profil prodavača, valuta, jezik i postavke cijena.",

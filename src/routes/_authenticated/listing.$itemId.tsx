@@ -22,9 +22,9 @@ import { STATUS_LABEL, STATUS_ORDER, formatDate, formatEur } from "@/lib/domain"
 export const Route = createFileRoute("/_authenticated/listing/$itemId")({
   head: () => ({
     meta: [
-      { title: "Detalji oglasa — Vinted Seller OS" },
+      { title: "Detalji oglasa — Vinted Seller APP" },
       { name: "description", content: "Kopirajte i izvezite podatke oglasa za ručnu objavu." },
-      { property: "og:title", content: "Detalji oglasa — Vinted Seller OS" },
+      { property: "og:title", content: "Detalji oglasa — Vinted Seller APP" },
       {
         property: "og:description",
         content: "Kopirajte i izvezite podatke oglasa za ručnu objavu.",

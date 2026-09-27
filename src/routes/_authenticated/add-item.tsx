@@ -22,9 +22,9 @@ import { CATEGORIES, CONDITIONS } from "@/lib/domain";
 export const Route = createFileRoute("/_authenticated/add-item")({
   head: () => ({
     meta: [
-      { title: "Dodaj artikl — Vinted Seller OS" },
+      { title: "Dodaj artikl — Vinted Seller APP" },
       { name: "description", content: "Učitajte fotografije i pripremite novi oglas." },
-      { property: "og:title", content: "Dodaj artikl — Vinted Seller OS" },
+      { property: "og:title", content: "Dodaj artikl — Vinted Seller APP" },
       { property: "og:description", content: "Učitajte fotografije i pripremite novi oglas." },
     ],
   }),

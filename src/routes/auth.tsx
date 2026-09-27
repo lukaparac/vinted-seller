@@ -11,12 +11,12 @@ import { lovable } from "@/integrations/lovable/index";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Prijava — Vinted Seller OS" },
+      { title: "Prijava — Vinted Seller APP" },
       {
         name: "description",
         content: "Prijavite se u svoj privatni radni prostor za pripremu Vinted oglasa.",
       },
-      { property: "og:title", content: "Prijava — Vinted Seller OS" },
+      { property: "og:title", content: "Prijava — Vinted Seller APP" },
       {
         property: "og:description",
         content: "Privatni radni prostor za pripremu i vođenje Vinted oglasa.",
@@ -101,7 +101,7 @@ function AuthPage() {
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="hidden flex-col justify-between bg-sidebar p-12 lg:flex">
         <Link to="/" className="text-overline text-sidebar-foreground/60">
-          Vinted Seller OS
+          Vinted Seller APP
         </Link>
         <div>
           <h2 className="text-display text-4xl text-sidebar-primary-foreground">

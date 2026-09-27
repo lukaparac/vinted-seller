@@ -22,9 +22,9 @@ import { formatEur } from "@/lib/domain";
 export const Route = createFileRoute("/_authenticated/workspace/$itemId")({
   head: () => ({
     meta: [
-      { title: "AI radni prostor — Vinted Seller OS" },
+      { title: "AI radni prostor — Vinted Seller APP" },
       { name: "description", content: "Pregledajte i uredite AI prijedlog oglasa prije objave." },
-      { property: "og:title", content: "AI radni prostor — Vinted Seller OS" },
+      { property: "og:title", content: "AI radni prostor — Vinted Seller APP" },
       {
         property: "og:description",
         content: "Pregledajte i uredite AI prijedlog oglasa prije objave.",

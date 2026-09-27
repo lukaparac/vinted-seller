@@ -15,9 +15,9 @@ import { formatDate, formatEur } from "@/lib/domain";
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Vinted Seller OS" },
+      { title: "Dashboard — Vinted Seller APP" },
       { name: "description", content: "Pregled zaliha, skica i spremnih oglasa." },
-      { property: "og:title", content: "Dashboard — Vinted Seller OS" },
+      { property: "og:title", content: "Dashboard — Vinted Seller APP" },
       { property: "og:description", content: "Pregled zaliha, skica i spremnih oglasa." },
     ],
   }),
