@@ -1,7 +1,7 @@
 import { confidenceLabel } from "@/lib/domain";
 import { cn } from "@/lib/utils";
 
-export function ConfidenceMeter({ score }: { score?: number }) {
+export function ConfidenceMeter({ score }: { score?: number | undefined }) {
   if (score === undefined || score === null) return null;
   const pct = Math.round(score * 100);
   const tone =

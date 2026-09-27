@@ -43,7 +43,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarInner({ email, onNavigate }: { email?: string; onNavigate?: () => void }) {
+function SidebarInner({ email, onNavigate }: { email?: string | undefined; onNavigate?: (() => void) | undefined }) {
   const navigate = useNavigate();
 
   async function signOut() {
@@ -91,9 +91,9 @@ export function AppShell({
   children,
 }: {
   title: string;
-  description?: string;
-  actions?: ReactNode;
-  email?: string;
+  description?: string | undefined;
+  actions?: ReactNode | undefined;
+  email?: string | undefined;
   children: ReactNode;
 }) {
   const [open, setOpen] = useState(false);

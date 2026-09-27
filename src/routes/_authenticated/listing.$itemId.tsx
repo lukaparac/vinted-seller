@@ -80,7 +80,7 @@ function ListingDetail() {
     },
   });
 
-  const signed = useSignedImages((data?.images ?? []).map((i) => i.storage_path));
+  const signed = useSignedImages((data?.images ?? []).map((i) => i.storage_path)).data ?? {};
 
   const changeStatus = useMutation({
     mutationFn: async (status: string) => {

@@ -101,7 +101,7 @@ function Workspace() {
   const [error, setError] = useState<string | null>(null);
 
   const paths = (data?.images ?? []).map((img) => img.storage_path);
-  const signed = useSignedImages(paths);
+  const signed = useSignedImages(paths).data ?? {};
 
   useEffect(() => {
     if (!data) return;
