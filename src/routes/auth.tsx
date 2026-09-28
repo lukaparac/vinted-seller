@@ -23,9 +23,10 @@ export const Route = createFileRoute("/auth")({
       },
     ],
   }),
-  validateSearch: (s: Record<string, unknown>) => ({
-    next: typeof s.next === "string" && s.next.startsWith("/") && !s.next.startsWith("//") ? s.next : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): { next?: string } =>
+    typeof s.next === "string" && s.next.startsWith("/") && !s.next.startsWith("//")
+      ? { next: s.next }
+      : {},
   component: AuthPage,
 });
 
@@ -34,7 +35,7 @@ function AuthPage() {
   const { next } = Route.useSearch();
   const goNext = () => {
     if (next) window.location.href = next;
-    else goNext();
+    else navigate({ to: "/dashboard" });
   };
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
