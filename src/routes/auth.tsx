@@ -23,11 +23,20 @@ export const Route = createFileRoute("/auth")({
       },
     ],
   }),
+  validateSearch: (s: Record<string, unknown>): { next?: string } =>
+    typeof s["next"] === "string" && s["next"].startsWith("/") && !s["next"].startsWith("//")
+      ? { next: s["next"] }
+      : {},
   component: AuthPage,
 });
 
 function AuthPage() {
   const navigate = useNavigate();
+  const { next } = Route.useSearch();
+  const goNext = () => {
+    if (next) window.location.href = next;
+    else navigate({ to: "/dashboard" });
+  };
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,9 +45,9 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/dashboard" });
+      if (data.session) goNext();
     });
-  }, [navigate]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   function validate(): string | null {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Unesite ispravnu e-mail adresu.";
@@ -58,18 +67,18 @@ function AuthPage() {
         const { data, error: err } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/dashboard` },
+          options: { emailRedirectTo: `${window.location.origin}${next ?? "/dashboard"}` },
         });
         if (err) throw err;
         if (data.session) {
-          navigate({ to: "/dashboard" });
+          goNext();
         } else {
           toast.success("Provjerite e-mail i potvrdite registraciju.");
         }
       } else {
         const { error: err } = await supabase.auth.signInWithPassword({ email, password });
         if (err) throw err;
-        navigate({ to: "/dashboard" });
+        goNext();
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Prijava nije uspjela.";
@@ -86,7 +95,7 @@ function AuthPage() {
   async function google() {
     setBusy(true);
     const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+      redirect_uri: next ? `${window.location.origin}${next}` : window.location.origin,
     });
     if (result.error) {
       setBusy(false);
@@ -94,7 +103,7 @@ function AuthPage() {
       return;
     }
     if (result.redirected) return;
-    navigate({ to: "/dashboard" });
+    goNext();
   }
 
   return (
