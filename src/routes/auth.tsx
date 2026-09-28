@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
+import { sanitizeNextPath } from "@/lib/auth-redirect";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -23,13 +24,10 @@ export const Route = createFileRoute("/auth")({
       },
     ],
   }),
-  validateSearch: (s: Record<string, unknown>): { next?: string } =>
-    typeof s["next"] === "string" &&
-    s["next"].startsWith("/") &&
-    !s["next"].startsWith("//") &&
-    !s["next"].includes("\\")
-      ? { next: s["next"] }
-      : {},
+  validateSearch: (s: Record<string, unknown>): { next?: string } => {
+    const next = sanitizeNextPath(s["next"]);
+    return next ? { next } : {};
+  },
   component: AuthPage,
 });
 
