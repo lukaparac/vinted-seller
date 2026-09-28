@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "sdk_version": "3.0.4",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://gbcefrikjqdfcvtvonih.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "vinted-seller-app",
+      "version": "0.1.0",
+      "title": "Vinted Seller APP"
+    },
+    "tools": [
+      {
+        "name": "list_items",
+        "title": "List inventory items",
+        "description": "List the signed-in seller's inventory items, optionally filtered by status or search text.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "ready",
+                "listed",
+                "reserved",
+                "sold",
+                "shipped"
+              ],
+              "description": "Filter by item status."
+            },
+            "search": {
+              "type": "string",
+              "description": "Match SKU, title or brand."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Max rows (default 25)."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_listing",
+        "title": "Get item listing",
+        "description": "Get one item with its prepared listing (title, Croatian description, keywords, prices) by item id or SKU.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Item id."
+            },
+            "sku": {
+              "type": "string",
+              "description": "Item SKU, e.g. LP-VNT-0001."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "update_item_status",
+        "title": "Update item status",
+        "description": "Change an item's status in the seller's inventory (e.g. mark as sold). Does not touch Vinted.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Item id."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "ready",
+                "listed",
+                "reserved",
+                "sold",
+                "shipped"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "status"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
